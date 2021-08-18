@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "transporte_sus",
+    "slug": "transporte_sus",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "transporte_sus"
+}
