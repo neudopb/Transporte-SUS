@@ -9,9 +9,9 @@ export function Home({ navigation }){
             <Image source={require('../../images/logo.png')} style={Style.logo} />
 
             <View style={Style.viewBtn}>
-                <Button texto="Agendar Viagem" color="#14A192" onPress={ ()=> navigation.navigate('Home') } />
+                <Button texto="Agendar Viagem" color="#14A192" onPress={ ()=> navigation.navigate('Agendar') } />
                 <View style={Style.viewSep}></View>
-                <Button texto="Meus Agendamentos" color="#E0961D" onPress={ ()=> navigation.navigate('Register') } />
+                <Button texto="Meus Agendamentos" color="#E0961D" onPress={ ()=> navigation.navigate('MeusAgend') } />
             </View>
         </View>
     );

@@ -4,6 +4,9 @@ import { Login } from './pages/login/Login';
 import { Register } from './pages/register/Register';
 import { Register2 } from './pages/register/Register2';
 import { Home } from './pages/home/Home';
+import { HomeAdmin } from './pages/home/HomeAdmin';
+import { Agendar } from './pages/agendamento/Agendar';
+import { MeusAgend } from './pages/agendamento/MeusAgend';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +51,40 @@ export function Routes() {
                 name="Home"
                 component={Home}
                 options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="HomeAdmin"
+                component={HomeAdmin}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+                name="Agendar"
+                component={Agendar}
+                options={{
+                    title:"Agendar Viagem", headerTitleStyle: {
+                        fontSize: 25,
+                        color: '#FFF',
+                    },
+                    headerStyle: {
+                        backgroundColor: '#14A192',
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name="MeusAgend"
+                component={MeusAgend}
+                options={{
+                    title:"Meus Agendamentos", headerTitleStyle: {
+                        fontSize: 25,
+                        color: '#FFF',
+                    },
+                    headerStyle: {
+                        backgroundColor: '#14A192',
+                    },
+                }}
             />
 
         </Stack.Navigator>

@@ -9,5 +9,13 @@ export default StyleSheet.create({
     },
     logo: {
         marginTop: 100,
-    }
+    },
+    txtAdm:{
+      fontSize: 22,
+      color: 'blue',
+      textDecorationLine: 'underline',
+    },
+    btnAdm:{
+      transform: [{translateY:80}],
+    },
 });

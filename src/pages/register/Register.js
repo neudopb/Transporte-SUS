@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import Style from './Style';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -7,6 +7,7 @@ import { Button } from '../../components/Button';
 export function Register({ navigation }){
     return (
         <View style={Style.container}>
+            <Text style={Style.title}>Preencha suas Informações</Text>
             <Input label="Nome" />
             <Input label="CPF" keyboardType="numeric" />
             <Input label="Data de Nascimento" keyboardType="numeric" />

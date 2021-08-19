@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity, Text } from 'react-native';
 import Style from './Style';
 import { InputLogin } from '../../components/InputLogin';
 import { Button } from '../../components/Button';
@@ -15,6 +15,11 @@ export function Login({ navigation }){
             <Button texto="Login" color="#14A192" onPress={ ()=> navigation.navigate('Home') } />
 
             <Button texto="Cadastre-se" color="#E0961D" onPress={ ()=> navigation.navigate('Register') } />
+
+            <TouchableOpacity style={Style.btnAdm} onPress={ ()=> navigation.navigate('HomeAdmin') }>
+                <Text style={Style.txtAdm}>ADMIN</Text>
+            </TouchableOpacity>
+
         </View>
     );
 };

@@ -3,10 +3,10 @@ import { View, TextInput, Text, StyleSheet } from 'react-native';
 
 export function Input(props) {
     return (
-        <View style={styles.viewBtn}>
+        <View style={[styles.viewBtn, props.altura ? {height: props.altura}:{height: 60}]}>
             <Text style={styles.txt}>{props.label}</Text>
             <TextInput
-                style={styles.inp}
+                 style={styles.inp}
                 { ...props }
             />
         </View>

@@ -7,6 +7,13 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    containerList: {
+        flex: 1,
+        paddingTop: 30 ,
+        backgroundColor: '#d8d8d8',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      },
     title: {
       color: '#e0961d',
       fontSize: 24,
