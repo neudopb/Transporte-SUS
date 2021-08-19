@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import Style from './Style';
-import { Input } from '../../components/Input';
+import { InputLogin } from '../../components/InputLogin';
 import { Button } from '../../components/Button';
 
 export function Login({ navigation }){
@@ -9,8 +9,8 @@ export function Login({ navigation }){
         <View style={Style.container}>
             <Image source={require('../../images/logo.png')} style={Style.logo} />
 
-            <Input placeholder="E-mail" />
-            <Input placeholder="Senha" />
+            <InputLogin placeholder="E-mail" />
+            <InputLogin placeholder="Senha" />
 
             <Button texto="Login" color="#14A192" onPress={ ()=> navigation.navigate('Home') } />
 

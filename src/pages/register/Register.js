@@ -7,17 +7,14 @@ import { Button } from '../../components/Button';
 export function Register({ navigation }){
     return (
         <View style={Style.container}>
-            <Input placeholder="Nome" />
-            <Input placeholder="CPF" keyboardType="numeric" />
-            <Input placeholder="Data de Nascimento" keyboardType="numeric" />
-            <Input placeholder="Estado" />
-            <Input placeholder="Cidade" />
-            <Input placeholder="UBS" />
-            <Input placeholder="E-mail" />
-            <Input placeholder="Senha" secureTextEntry={true} />
-            <Input placeholder="Confirmar Senha" secureTextEntry={true} />
+            <Input label="Nome" />
+            <Input label="CPF" keyboardType="numeric" />
+            <Input label="Data de Nascimento" keyboardType="numeric" />
+            <Input label="E-mail" />
+            <Input label="Senha" secureTextEntry={true} />
+            <Input label="Confirmar Senha" secureTextEntry={true} />
 
-            <Button texto="Cadastrar" color="#14A192" onPress={ ()=> navigation.navigate('Login') } />
+            <Button texto="Proximo" color="#14A192" onPress={ ()=> navigation.navigate('Register2') } />
         </View>
     );
 };

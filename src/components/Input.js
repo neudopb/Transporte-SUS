@@ -1,24 +1,34 @@
 import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
 
 export function Input(props) {
     return (
-        <TextInput
-            style={styles.inp}
-            placeholder={props.placeholder}
-            placeholderTextColor='#B2B2B2'
-            { ...props }
-        />
+        <View style={styles.viewBtn}>
+            <Text style={styles.txt}>{props.label}</Text>
+            <TextInput
+                style={styles.inp}
+                { ...props }
+            />
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
-    inp: {
-        backgroundColor: '#FFF',
+    viewBtn: {
         width: '90%',
-        marginTop: 15,
+        height: 60,
+        marginTop: 10,
+    },
+    inp: {
+        flex: 1,
+        backgroundColor: '#FFF',
         padding: 10,
         borderRadius: 10,
         fontSize: 18,
+    },
+    txt: {
+        fontSize: 15,
+        paddingLeft: 5,
+        fontWeight: 'bold'
     },
 });

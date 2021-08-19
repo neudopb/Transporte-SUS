@@ -10,4 +10,4 @@ export default StyleSheet.create({
     logo: {
         marginTop: 100,
     }
-  });
+});
