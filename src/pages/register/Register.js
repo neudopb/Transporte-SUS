@@ -7,7 +7,6 @@ import { Button } from '../../components/Button';
 export function Register({ navigation }){
     return (
         <View style={Style.container}>
-
             <Input placeholder="Nome" />
             <Input placeholder="CPF" keyboardType="numeric" />
             <Input placeholder="Data de Nascimento" keyboardType="numeric" />

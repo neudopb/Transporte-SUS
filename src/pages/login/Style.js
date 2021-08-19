@@ -8,9 +8,6 @@ export default StyleSheet.create({
       justifyContent: 'flex-start',
     },
     logo: {
-        height: 200,
-        width: 120,
         marginTop: 100,
-        marginBottom: 30,
     }
   });

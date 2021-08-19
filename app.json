@@ -3,6 +3,13 @@
     "name": "transporte_sus",
     "slug": "transporte_sus",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/images/logo.png",
+    "splash": {
+      "image": "./src/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#d8d8d8"
+    },
     "assetBundlePatterns": [
       "**/*"
     ]

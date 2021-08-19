@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Login } from './pages/Login/Login';
+import { Login } from './pages/login/Login';
 import { Register } from './pages/register/Register';
 import { Home } from './pages/home/Home';
 
@@ -21,6 +21,7 @@ export function Routes() {
                 options={{
                     title:"Cadastro", headerTitleStyle: {
                         fontSize: 25,
+                        color: '#14A192',
                     },
                 }}
             />

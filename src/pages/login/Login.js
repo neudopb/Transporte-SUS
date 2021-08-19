@@ -7,7 +7,7 @@ import { Button } from '../../components/Button';
 export function Login({ navigation }){
     return (
         <View style={Style.container}>
-            <Image source={require('../../images/sus.png')} style={Style.logo} />
+            <Image source={require('../../images/logo.png')} style={Style.logo} />
 
             <Input placeholder="E-mail" />
             <Input placeholder="Senha" />
