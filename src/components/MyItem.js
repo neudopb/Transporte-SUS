@@ -30,7 +30,7 @@ export function MyItem(props) {
                 </View>
             </View>
             {
-                visualizar? <View style={styles.viewStatus}><Text style={styles.info}>{props.motivo}</Text></View> : null
+                visualizar? <View style={styles.viewStatus}><Text style={styles.info}>{props.observacao}</Text></View> : null
             }
         </View>
     );

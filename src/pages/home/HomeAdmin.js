@@ -9,11 +9,11 @@ export function HomeAdmin({ navigation }){
             <Image source={require('../../images/logo.png')} style={Style.logo} />
 
             <View style={Style.viewBtn}>
-                <Button texto="Solicitações Confirmadas" color="#14A192" onPress={ ()=> navigation.navigate('Home') } />
+                <Button texto="Solicitações Confirmadas" color="#14A192" onPress={ ()=> navigation.navigate('SolicConfirmadas') } />
                 <View style={Style.viewSep}></View>
-                <Button texto="Solicitações Pendentes" color="#E0961D" onPress={ ()=> navigation.navigate('Register') } />
+                <Button texto="Solicitações Pendentes" color="#E0961D" onPress={ ()=> navigation.navigate('SolicPendentes') } />
                 <View style={Style.viewSep}></View>
-                <Button texto="Histórico" color="#808080" onPress={ ()=> navigation.navigate('Register') } />
+                <Button texto="Histórico" color="#808080" onPress={ ()=> navigation.navigate('SolicConfirmadas') } />
             </View>
         </View>
     );

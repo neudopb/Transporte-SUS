@@ -10,7 +10,7 @@ export function Login({ navigation }){
             <Image source={require('../../images/logo.png')} style={Style.logo} />
 
             <InputLogin placeholder="E-mail" />
-            <InputLogin placeholder="Senha" />
+            <InputLogin placeholder="Senha" secureTextEntry={true} />
 
             <Button texto="Login" color="#14A192" onPress={ ()=> navigation.navigate('Home') } />
 

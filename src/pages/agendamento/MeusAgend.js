@@ -7,11 +7,11 @@ export function MeusAgend({ navigation }){
 
     return (
         <View style={Style.containerList}>
-            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' motivo = "Confirmado" status = "Agendado" cor = "#307268"/>
-            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' motivo = "..." status = "Aguardando" cor = "#E0961D"/>
-            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' motivo = "Confirmado" status = "Agendado" cor = "#307268"/>
-            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' motivo = "Carro ocupado" status = "Cancelado" cor = "#c21807"/>
-            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' motivo = "Carro na oficina" status = "Cancelado" cor = "#c21807"/>
+            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' observacao = "Confirmado" status = "Agendado" cor = "#307268"/>
+            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' observacao = "..." status = "Aguardando" cor = "#E0961D"/>
+            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' observacao = "Confirmado" status = "Agendado" cor = "#307268"/>
+            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' observacao = "Carro ocupado" status = "Cancelado" cor = "#c21807"/>
+            <MyItem data= '21/08/2021' hora = '09:00' destino = 'Policlínica Icó' observacao = "Carro na oficina" status = "Cancelado" cor = "#c21807"/>
         </View>
     );
 };

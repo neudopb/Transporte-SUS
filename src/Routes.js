@@ -7,6 +7,8 @@ import { Home } from './pages/home/Home';
 import { HomeAdmin } from './pages/home/HomeAdmin';
 import { Agendar } from './pages/agendamento/Agendar';
 import { MeusAgend } from './pages/agendamento/MeusAgend';
+import { SolicConfirmadas } from './pages/atendimento/SolicConfirmadas';
+import { SolicPendentes } from './pages/atendimento/SolicPendentes';
 
 const Stack = createStackNavigator();
 
@@ -78,6 +80,34 @@ export function Routes() {
                 component={MeusAgend}
                 options={{
                     title:"Meus Agendamentos", headerTitleStyle: {
+                        fontSize: 25,
+                        color: '#FFF',
+                    },
+                    headerStyle: {
+                        backgroundColor: '#14A192',
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name="SolicConfirmadas"
+                component={SolicConfirmadas}
+                options={{
+                    title:"Solicitações Confirmadas", headerTitleStyle: {
+                        fontSize: 25,
+                        color: '#FFF',
+                    },
+                    headerStyle: {
+                        backgroundColor: '#14A192',
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name="SolicPendentes"
+                component={SolicPendentes}
+                options={{
+                    title:"Solicitações Pendentes", headerTitleStyle: {
                         fontSize: 25,
                         color: '#FFF',
                     },
