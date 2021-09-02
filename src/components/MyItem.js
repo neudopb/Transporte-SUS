@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import {Ionicons} from '@expo/vector-icons'
+import {Ionicons} from '@expo/vector-icons';
+import MyTheme from '../styles/MyTheme';
 
 export function MyItem(props) {
 
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '10%',
         marginTop: 10,
-        backgroundColor:'#c0c0c0',
+        backgroundColor: MyTheme.colors.gray4,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         height: '10%',
         marginTop: 15,
         marginBottom: 15,
-        backgroundColor:'#c0c0c0',
+        backgroundColor: MyTheme.colors.gray4,
         borderRadius: 5,
     },
     txt: {
@@ -73,11 +74,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#c0c0c0',
+        backgroundColor: MyTheme.colors.gray4,
         borderBottomRightRadius: 5,
         borderBottomLeftRadius: 5,
         borderWidth: 1,
-        borderColor: '#E0961D',
+        borderColor: MyTheme.colors.primary_orange,
         transform: [{translateY:-7}],
     },
     info:{
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     status:{
         fontSize: 16,
         marginLeft: 15,
-        color: '#fff',
+        color: MyTheme.colors.white,
         borderRadius: 15,
         padding: 4,
     }

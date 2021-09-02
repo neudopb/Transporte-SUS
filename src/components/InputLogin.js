@@ -1,12 +1,13 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
+import MyTheme from '../styles/MyTheme';
 
 export function InputLogin(props) {
     return (
         <TextInput
             style={styles.inp}
             placeholder={props.placeholder}
-            placeholderTextColor='#B2B2B2'
+            placeholderTextColor= {MyTheme.colors.gray3}
             { ...props }
         />
     );
@@ -14,7 +15,7 @@ export function InputLogin(props) {
 
 const styles = StyleSheet.create({
     inp: {
-        backgroundColor: '#FFF',
+        backgroundColor: MyTheme.colors.white,
         width: '90%',
         marginTop: 15,
         padding: 10,

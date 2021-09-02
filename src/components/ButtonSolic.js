@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import MyTheme from '../styles/MyTheme';
 
 export function ButtonSolic(props) {
 
@@ -12,7 +13,7 @@ export function ButtonSolic(props) {
 
 const styles = StyleSheet.create({
     btn: {
-        width: '20%',
+        width: '22%',
         height: 30,
         borderRadius: 30,
         alignItems: 'center',
@@ -21,6 +22,6 @@ const styles = StyleSheet.create({
     },
     txt: {
         fontSize: 15,
-        color: '#FFF',
+        color: MyTheme.colors.white,
     }
 });

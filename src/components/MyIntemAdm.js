@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import MyTheme from '../styles/MyTheme';
 
 export function MyIntemAdm(props) {
 
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '10%',
         marginTop: 10,
-        backgroundColor:'#c0c0c0',
+        backgroundColor: MyTheme.colors.gray4,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',

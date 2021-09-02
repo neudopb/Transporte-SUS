@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ButtonSolic } from './ButtonSolic';
+import MyTheme from '../styles/MyTheme';
 
 export function MyItemPend(props) {
 
@@ -11,8 +12,8 @@ export function MyItemPend(props) {
                 {props.data} - {props.hora} {"\n"}
                 Destino: {props.destino}{"\n"}
             </Text>
-            <ButtonSolic texto="Cancelar" cor="#c21807" />
-            <ButtonSolic texto="Confirmar" cor="#307268" />
+            <ButtonSolic texto="Cancelar" cor={MyTheme.colors.status_red} />
+            <ButtonSolic texto="Confirmar" cor={MyTheme.colors.status_green} />
         </View>
     );
 };
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         height: '12%',
         marginTop: 10,
         padding: 15,
-        backgroundColor:'#c0c0c0',
+        backgroundColor: MyTheme.colors.gray4,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
+import MyTheme from '../styles/MyTheme';
 
 export function Input(props) {
     return (
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     },
     inp: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: MyTheme.colors.white,
         padding: 10,
         borderRadius: 10,
         fontSize: 18,

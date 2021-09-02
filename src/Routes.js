@@ -1,14 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Login } from './pages/login/Login';
-import { Register } from './pages/register/Register';
-import { Register2 } from './pages/register/Register2';
-import { Home } from './pages/home/Home';
-import { HomeAdmin } from './pages/home/HomeAdmin';
-import { Agendar } from './pages/agendamento/Agendar';
-import { MeusAgend } from './pages/agendamento/MeusAgend';
-import { SolicConfirmadas } from './pages/atendimento/SolicConfirmadas';
-import { SolicPendentes } from './pages/atendimento/SolicPendentes';
+
+import { Login } from './pages/accounts/Login';
+import { Register } from './pages/accounts/Register';
+import { Register2 } from './pages/accounts/Register2';
+
+import { Home } from './pages/users/Home';
+import { Agendar } from './pages/users/Agendar';
+import { MeusAgend } from './pages/users/MeusAgend';
+
+import { HomeAdmin } from './pages/transports/HomeAdmin';
+import { SolicConfirmadas } from './pages/transports/SolicConfirmadas';
+import { SolicPendentes } from './pages/transports/SolicPendentes';
+
+import MyTheme from './styles/MyTheme';
 
 const Stack = createStackNavigator();
 
@@ -27,10 +32,10 @@ export function Routes() {
                 options={{
                     title:"Cadastro", headerTitleStyle: {
                         fontSize: 25,
-                        color: '#FFF',
+                        color: MyTheme.colors.white,
                     },
                     headerStyle: {
-                        backgroundColor: '#14A192',
+                        backgroundColor: MyTheme.colors.primary_green,
                     },
                 }}
             />
@@ -41,10 +46,10 @@ export function Routes() {
                 options={{
                     title:"Cadastro Endereço", headerTitleStyle: {
                         fontSize: 25,
-                        color: '#FFF',
+                        color: MyTheme.colors.white,
                     },
                     headerStyle: {
-                        backgroundColor: '#14A192',
+                        backgroundColor: MyTheme.colors.primary_green,
                     },
                 }}
             />
@@ -56,21 +61,15 @@ export function Routes() {
             />
 
             <Stack.Screen
-                name="HomeAdmin"
-                component={HomeAdmin}
-                options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
                 name="Agendar"
                 component={Agendar}
                 options={{
                     title:"Agendar Viagem", headerTitleStyle: {
                         fontSize: 25,
-                        color: '#FFF',
+                        color: MyTheme.colors.white,
                     },
                     headerStyle: {
-                        backgroundColor: '#14A192',
+                        backgroundColor: MyTheme.colors.primary_green,
                     },
                 }}
             />
@@ -81,12 +80,18 @@ export function Routes() {
                 options={{
                     title:"Meus Agendamentos", headerTitleStyle: {
                         fontSize: 25,
-                        color: '#FFF',
+                        color: MyTheme.colors.white,
                     },
                     headerStyle: {
-                        backgroundColor: '#14A192',
+                        backgroundColor: MyTheme.colors.primary_green,
                     },
                 }}
+            />
+
+            <Stack.Screen
+                name="HomeAdmin"
+                component={HomeAdmin}
+                options={{ headerShown: false }}
             />
 
             <Stack.Screen
@@ -95,10 +100,10 @@ export function Routes() {
                 options={{
                     title:"Solicitações Confirmadas", headerTitleStyle: {
                         fontSize: 25,
-                        color: '#FFF',
+                        color: MyTheme.colors.white,
                     },
                     headerStyle: {
-                        backgroundColor: '#14A192',
+                        backgroundColor: MyTheme.colors.primary_green,
                     },
                 }}
             />
@@ -109,10 +114,10 @@ export function Routes() {
                 options={{
                     title:"Solicitações Pendentes", headerTitleStyle: {
                         fontSize: 25,
-                        color: '#FFF',
+                        color: MyTheme.colors.white,
                     },
                     headerStyle: {
-                        backgroundColor: '#14A192',
+                        backgroundColor: MyTheme.colors.primary_green,
                     },
                 }}
             />

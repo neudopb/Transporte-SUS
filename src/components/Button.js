@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import MyTheme from '../styles/MyTheme';
 
 export function Button(props) {
 
@@ -21,6 +22,6 @@ const styles = StyleSheet.create({
     },
     txt: {
         fontSize: 20,
-        color: '#FFF',
+        color: MyTheme.colors.white,
     }
 });
