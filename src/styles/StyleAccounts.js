@@ -30,7 +30,8 @@ export default StyleSheet.create({
       color: MyTheme.colors.primary_orange,
       fontSize: 24,
       fontWeight: 'bold',
-      transform: [{translateY:-40}],
+      //transform: [{translateY:-40}],
+      padding: 20,
       textDecorationLine: 'underline',
     },
 });

@@ -13,10 +13,11 @@ export function Button(props) {
 
 const styles = StyleSheet.create({
     btn: {
-        width: '90%',
+        width: '100%',
         height: 50,
         borderRadius: 30,
         marginTop: 30,
+        marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'center',
     },
