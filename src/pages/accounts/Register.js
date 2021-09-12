@@ -1,9 +1,10 @@
-import React from 'react';
-import { View, Text, ScrollView, Alert, Keyboard } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, ScrollView, Alert, Keyboard} from 'react-native';
 import styles from '../../styles/StyleAccounts';
 import MyTheme from '../../styles/MyTheme';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import {Select} from '../../components/Select';
 import api from '../../services/Api';
 
 import { useForm, Controller } from 'react-hook-form';
@@ -12,9 +13,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object().shape({
     nome: yup.string().required("Informe o nome"),
-    estado: yup.number().required("Informe o Estado"),
-    cidade: yup.number().required("Informe a cidade"),
-    ubs: yup.number().required("Informe a Ubs"),
+    estado: yup.number().integer().positive("Escolha uma opção válida").required("Informe o Estado"),
+    cidade: yup.number().integer().positive("Escolha uma opção válida").required("Informe a cidade"),
+    ubs: yup.number().integer().positive("Escolha uma opção válida").required("Informe a Ubs"),
     localizacao: yup.string().required("Informe a sua localização"),
     email: yup.string().email().required("Informe um E-mail valido"),
     senha: yup.string().min(8, "Senha deve conter pelo menos 8 caracteres").required("Informe a senha"),
@@ -23,9 +24,40 @@ const schema = yup.object().shape({
 
 export function Register({ navigation }){
 
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+
+    const [estadoList, setEstadoList] = useState([]);
+    const [cidadeList, setCidadeList] = useState([]);
+    const [ubsList, setUbsList] = useState([]);
+
+    async function listEstado(){
+        try {
+            const {data} = await api.get('estadolist/');
+            setEstadoList(data);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async function listCidade(){
+        try {
+            const {data} = await api.get('cidadelist/');
+            setCidadeList(data);
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async function listUbs(){
+        try {
+            const {data} = await api.get('ubslist/');
+            setUbsList(data);
+        } catch(error) {
+            console.log(error);
+        }
+    }
 
     async function createUser(data) {
 
@@ -55,20 +87,28 @@ export function Register({ navigation }){
         navigation.navigate('Login');
     }
 
+    useEffect( () =>{
+        listEstado();
+        listCidade();
+        listUbs();
+    },[]); 
+
     return (
         <View style={styles.containerRegister}>
             <ScrollView contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
                 <Text style={styles.title}>Preencha suas Informações</Text>
                 <Input label="Nome" name="nome" control={control} error={ errors.nome && errors.nome.message } />
-                <Input label="Estado" name="estado" control={control} error={ errors.estado && errors.estado.message } />
-                <Input label="Cidade" name="cidade" control={control} error={ errors.cidade && errors.cidade.message } />
-                <Input label="UBS" name="ubs" control={control} error={ errors.ubs && errors.ubs.message } />
+                <Select datas= {estadoList} label="Estado" name="estado" control={control} setValue={setValue} error={ errors.estado && errors.estado.message } />
+                <Select datas= {cidadeList} label="Cidade" name="cidade" control={control} setValue={setValue} error={ errors.cidade && errors.cidade.message } />
+                <Select datas= {ubsList} label="UBS" name="ubs" control={control} setValue={setValue} error={ errors.ubs && errors.ubs.message } />
                 <Input label="Minha Localização" name="localizacao" control={control} error={ errors.localizacao && errors.localizacao.message } />
                 <Input label="E-mail" name="email" control={control} error={ errors.email && errors.email.message } />
                 <Input label="Senha" name="senha" control={control} error={ errors.senha && errors.senha.message } secureTextEntry={true} />
                 <Input label="Confirmar Senha" name="confirmarSenha" control={control} error={ errors.confirmarSenha && errors.confirmarSenha.message } secureTextEntry={true} />
 
-                <Button texto="Cadastrar" color={MyTheme.colors.primary_green} onPress={ handleSubmit(createUser) } />
+                <Button texto="Cadastrar" color={MyTheme.colors.primary_green} largura = '100%' onPress={ handleSubmit(createUser) } />
+                
+
             </ScrollView>
         </View>
     );

@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Login } from './pages/accounts/Login';
 import { Register } from './pages/accounts/Register';
-import { Register2 } from './pages/accounts/Register2';
 
 import { Home } from './pages/users/Home';
 import { Agendar } from './pages/users/Agendar';
@@ -31,20 +30,6 @@ export function Routes() {
                 component={Register}
                 options={{
                     title:"Cadastro", headerTitleStyle: {
-                        fontSize: 25,
-                        color: MyTheme.colors.white,
-                    },
-                    headerStyle: {
-                        backgroundColor: MyTheme.colors.primary_green,
-                    },
-                }}
-            />
-
-            <Stack.Screen
-                name="Register2"
-                component={Register2}
-                options={{
-                    title:"Cadastro Endereço", headerTitleStyle: {
                         fontSize: 25,
                         color: MyTheme.colors.white,
                     },

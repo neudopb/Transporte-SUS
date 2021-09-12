@@ -5,7 +5,7 @@ import MyTheme from '../styles/MyTheme';
 export function Button(props) {
 
     return (
-        <TouchableOpacity onPress={props.onPress} style={[styles.btn, {backgroundColor: props.color}]} >
+        <TouchableOpacity onPress={props.onPress} style={[styles.btn, {backgroundColor: props.color}, props.largura ? {width: props.largura}:'']} >
             <Text style={styles.txt}>{props.texto}</Text>
         </TouchableOpacity>
     );
@@ -13,7 +13,7 @@ export function Button(props) {
 
 const styles = StyleSheet.create({
     btn: {
-        width: '100%',
+        width: '90%',
         height: 50,
         borderRadius: 30,
         marginTop: 30,
