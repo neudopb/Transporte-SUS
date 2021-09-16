@@ -21,16 +21,16 @@ export function Login({ navigation }){
         resolver: yupResolver(schema)
     });
 
-    const {LoginUser} = useAuth();
+    const {loginUser} = useAuth();
     const [isLoading, setIsLoading] = useState(false);
 
     async function logi(data) {
-        try {
-            console.log(data.email + data.senha);
-            Keyboard.dismiss();
-            setIsLoading(true);
 
-            await LoginUser(data.email, data.senha);
+        Keyboard.dismiss();
+
+        try {
+            // setIsLoading(true);
+            return await loginUser(data.email, data.senha);
         } catch(error) {
             setIsLoading(false);
             console.log(error);

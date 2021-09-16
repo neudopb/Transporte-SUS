@@ -11,10 +11,10 @@ function AuthProvider({ children }) {
     const keyAsyncStorage = "@transportesus:user";
 
     const [user, setUser] = useState({});
-    const [userLoading, setUserLoading] = useState(true);
+    const [userLoading, setUserLoading] = useState(false);
 
-    async function LoginUser(email, senha) {
-
+    async function loginUser(email, senha) {
+        
         var params = new URLSearchParams();
         params.append('email', email);
         params.append('password', senha);
@@ -49,7 +49,7 @@ function AuthProvider({ children }) {
 
             setUser(userLogged);
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
-            
+
         } catch {
             Alert.alert("Erro na Autenticação.");
         }
@@ -73,18 +73,21 @@ function AuthProvider({ children }) {
     }
 
     useEffect( () => {
+        // logout()
         loadData();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, userLoading, LoginUser, logout }}>
+        <AuthContext.Provider value={{ user, userLoading, loginUser, logout }}>
             { children }
         </AuthContext.Provider>
     );
 };
 
 function useAuth() {
+
     const context = useContext(AuthContext);
+
     return context;
 }
 
