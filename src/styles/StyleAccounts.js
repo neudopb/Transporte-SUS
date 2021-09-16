@@ -34,4 +34,10 @@ export default StyleSheet.create({
       padding: 20,
       textDecorationLine: 'underline',
     },
+
+    actInd: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
 });

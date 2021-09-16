@@ -1,19 +1,18 @@
-import React from 'react';
-import { View, Image, TouchableOpacity, Text } from 'react-native';
+import React, {useState} from 'react';
+import { View, Image, TouchableOpacity, Text, Keyboard, Alert, ActivityIndicator } from 'react-native';
 import styles from '../../styles/StyleAccounts';
 import MyTheme from '../../styles/MyTheme';
 import { InputLogin } from '../../components/InputLogin';
 import { Button } from '../../components/Button';
-import api from '../../services/Api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from '../../contexts/Auth';
 
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object().shape({
-    email: yup.string().email().required("Informe um E-mail valido"),
-    senha: yup.string().min(8, "Senha deve conter pelo menos 8 caracteres").required("Informe a senha"),
+    email: yup.string().email().required("Informe um E-mail"),
+    senha: yup.string().required("Informe a senha"),
 });
 
 export function Login({ navigation }){
@@ -22,69 +21,43 @@ export function Login({ navigation }){
         resolver: yupResolver(schema)
     });
 
-    const keyAsyncStorage = "@transportesus:user";
+    const {LoginUser} = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
 
-    async function LoginUser(data) {
-
-        var params = new URLSearchParams();
-        params.append('email', data.email);
-        params.append('password', data.senha);
-
+    async function logi(data) {
         try {
-            const {data} = await api.post('token/', params);
-            const token = data.access;
-            const refresh = data.refresh;
-
-            const responseUser = await api.get('dadosusuario/', {
-                headers: {
-                    'Autorization': 'Bearer ' + token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
-            });
-
-            const {id, first_name, email, motorista_ubs, localizacao, estado, cidade, ubs} = responseUser.data[0];
-
-            const userLogged = {
-                id : id,
-                first_name : first_name,
-                email : email,
-                motorista_ubs : motorista_ubs,
-                localizacao : localizacao,
-                estado : estado,
-                cidade : cidade,
-                ubs : ubs,
-                token : token,
-                refresh : refresh
-            }
-
-            await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
-
-            console.log(userLogged);
+            console.log(data.email + data.senha);
             Keyboard.dismiss();
-            
-        } catch(error) {
-            console.log(error);
-            Alert.alert(error);
-        }
+            setIsLoading(true);
 
-        console.log(data);
-        navigation.navigate('Home');
+            await LoginUser(data.email, data.senha);
+        } catch(error) {
+            setIsLoading(false);
+            console.log(error);
+        }
+    }
+
+    if (isLoading) {
+        return (
+            <View style={styles.actInd}>
+                <ActivityIndicator size="large" color={MyTheme.colors.primary_orange} />
+            </View>
+        )
     }
 
     return (
         <View style={styles.containerLogin}>
             <Image source={require('../../images/logo.png')} style={styles.logo} />
 
-            <InputLogin placeholder="E-mail" />
-            <InputLogin placeholder="Senha" secureTextEntry={true} />
+            <InputLogin placeholder="E-mail" name="email" control={control} error={ errors.email && errors.email.message } />
+            <InputLogin placeholder="Senha" name="senha" control={control} error={ errors.senha && errors.senha.message } secureTextEntry={true} />
 
-            <Button texto="Login" color={MyTheme.colors.primary_green} onPress={ ()=> navigation.navigate('Home') } />
+            <Button texto="Login" color={MyTheme.colors.primary_green} onPress={ handleSubmit(logi) } />
 
             <Button texto="Cadastre-se" color={MyTheme.colors.primary_orange} onPress={ ()=> navigation.navigate('Register') } />
 
             <TouchableOpacity style={styles.btnAdm} onPress={ ()=> navigation.navigate('HomeAdmin') }>
-                <Text style={styles.txtAdm}>ADMIN</Text>
+                <Text style={styles.txtAdm} >ADMIN</Text>
             </TouchableOpacity>
 
         </View>
