@@ -7,6 +7,7 @@ import { MeusAgend } from '../pages/users/MeusAgend';
 import MyTheme from '../styles/MyTheme';
 import styles from '../styles/StyleAccounts';
 import { useAuth } from '../contexts/Auth';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ export function RoutesUsers() {
                     headerRight: () => (
                         <TouchableOpacity style={styles.btnlogout} onPress={logout}>
                             <Text style={styles.txtlogout}>Sair</Text>
+                            <MaterialCommunityIcons name="logout" size={24} color="white" />
                         </TouchableOpacity>
                     ),
                     headerStyle: {

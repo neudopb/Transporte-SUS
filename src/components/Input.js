@@ -5,9 +5,9 @@ import MyTheme from '../styles/MyTheme';
 import { useForm, Controller } from 'react-hook-form';
 
 
-export function Input({ altura, label, control, name, error, ...rest }) {
+export function Input({ largura, label, control, name, error, ...rest }) {
     return (
-        <View style={[styles.viewBtn]}>
+        <View style={[styles.viewBtn, largura ? {width: largura}:'']}>
             <Text style={styles.txt}>{label}</Text>
             <Controller
                 control={ control }

@@ -5,9 +5,9 @@ import { Picker } from '@react-native-picker/picker';
 import { useForm, Controller } from 'react-hook-form';
 
 
-export function Select({ datas, altura, label, control, setValue, name, error, ...rest }) {
+export function Select({ datas, largura, label, control, setValue, value, name, error, ...rest }) {
     return (
-        <View style={[styles.viewBtn]}>
+        <View style={[styles.viewBtn, largura ? {width: largura}:'']}>
             <Text style={styles.txt}>{label}</Text>
             <Controller
                 control={ control }
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
         height: 45,
         width: '100%',
         backgroundColor: MyTheme.colors.white,
-        padding: 10,
         borderRadius: 10,
         fontSize: 18,
     },

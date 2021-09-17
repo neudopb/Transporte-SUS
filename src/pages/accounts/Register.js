@@ -97,6 +97,7 @@ export function Register({ navigation }){
         <View style={styles.containerRegister}>
             <ScrollView contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
                 <Text style={styles.title}>Preencha suas Informações</Text>
+                
                 <Input label="Nome" name="nome" control={control} error={ errors.nome && errors.nome.message } />
                 <Select datas= {estadoList} label="Estado" name="estado" control={control} setValue={setValue} error={ errors.estado && errors.estado.message } />
                 <Select datas= {cidadeList} label="Cidade" name="cidade" control={control} setValue={setValue} error={ errors.cidade && errors.cidade.message } />
@@ -107,8 +108,6 @@ export function Register({ navigation }){
                 <Input label="Confirmar Senha" name="confirmarSenha" control={control} error={ errors.confirmarSenha && errors.confirmarSenha.message } secureTextEntry={true} />
 
                 <Button texto="Cadastrar" color={MyTheme.colors.primary_green} largura = '100%' onPress={ handleSubmit(createUser) } />
-                
-
             </ScrollView>
         </View>
     );

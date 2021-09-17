@@ -55,7 +55,7 @@ function AuthProvider({ children }) {
             setIsLoading(false);
         } catch {
             setIsLoading(false);
-            Alert.alert("Erro na Autenticação.");
+            Alert.alert("Login e/ou senha incorretos!");
         }
 
     }
@@ -77,7 +77,6 @@ function AuthProvider({ children }) {
     }
 
     useEffect( () => {
-        // logout()
         loadData();
     }, []);
 

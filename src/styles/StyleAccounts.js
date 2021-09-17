@@ -9,7 +9,10 @@ export default StyleSheet.create({
         justifyContent: 'flex-start',
     },
     logo: {
-        marginTop: 100,
+        marginTop: 80,
+        marginBottom: 50,
+        height: 200,
+        width: 200,
     },
 
     containerRegister: {
@@ -37,9 +40,12 @@ export default StyleSheet.create({
       paddingVertical: 7,
       paddingHorizontal: 12,
       borderRadius: 20,
-      backgroundColor: MyTheme.colors.white,
+      flexDirection: 'row',
+      borderWidth: 1,
+      borderColor: MyTheme.colors.white,
     },
     txtlogout: {
         fontSize: 18,
+        color: MyTheme.colors.white, 
     },
 });

@@ -16,13 +16,10 @@ export default StyleSheet.create({
     viewBtn: {
         flex: 1,
         width: '100%',
-        paddingTop: 70,
+        paddingTop: 40,
         alignItems: 'center',
         borderTopWidth: 1,
         borderTopColor: MyTheme.colors.gray2,
-    },
-    viewSep: {
-        height: 40,
     },
 
     title: {
