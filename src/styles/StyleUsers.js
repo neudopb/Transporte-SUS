@@ -4,7 +4,7 @@ import MyTheme from './MyTheme';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 30,
+        paddingTop: 0,
         backgroundColor: MyTheme.colors.background_gray,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -27,15 +27,15 @@ export default StyleSheet.create({
 
     containerAgendar: {
         flex: 1,
-        backgroundColor: '#d8d8d8',
+        backgroundColor: MyTheme.colors.background_gray,
         alignItems: 'center',
         justifyContent: 'center',
     },
     title: {
-    color: '#e0961d',
-    fontSize: 24,
-    fontWeight: 'bold',
-    transform: [{translateY:-40}],
-    textDecorationLine: 'underline',
+        color: MyTheme.colors.primary_orange,
+        fontSize: 24,
+        fontWeight: 'bold',
+        transform: [{translateY:-40}],
+        textDecorationLine: 'underline',
     },
 });

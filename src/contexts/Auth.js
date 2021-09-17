@@ -11,10 +11,12 @@ function AuthProvider({ children }) {
     const keyAsyncStorage = "@transportesus:user";
 
     const [user, setUser] = useState({});
-    const [userLoading, setUserLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     async function loginUser(email, senha) {
         
+        setIsLoading(true);
+
         var params = new URLSearchParams();
         params.append('email', email);
         params.append('password', senha);
@@ -50,26 +52,28 @@ function AuthProvider({ children }) {
             setUser(userLogged);
             await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
 
+            setIsLoading(false);
         } catch {
+            setIsLoading(false);
             Alert.alert("Erro na Autenticação.");
         }
 
     }
 
     async function logout(){
-        setUser();
+        setUser({});
         await AsyncStorage.removeItem(keyAsyncStorage);
     }
 
     async function loadData() {
+        setIsLoading(true);
         const storageUser = await AsyncStorage.getItem(keyAsyncStorage);
-
+        
         if (storageUser) {
             setUser(JSON.parse(storageUser));
-            setUserLoading(false);
         }
 
-        setUserLoading(false);
+        setIsLoading(false);
     }
 
     useEffect( () => {
@@ -78,7 +82,7 @@ function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, userLoading, loginUser, logout }}>
+        <AuthContext.Provider value={{ user, isLoading, setIsLoading, loginUser, logout }}>
             { children }
         </AuthContext.Provider>
     );

@@ -4,7 +4,7 @@ import MyTheme from "./MyTheme";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 30,
+        paddingTop: 0,
         backgroundColor: MyTheme.colors.background_gray,
         alignItems: 'center',
         justifyContent: 'flex-start',

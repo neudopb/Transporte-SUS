@@ -6,7 +6,6 @@ import { useForm, Controller } from 'react-hook-form';
 
 
 export function Select({ datas, altura, label, control, setValue, name, error, ...rest }) {
-
     return (
         <View style={[styles.viewBtn]}>
             <Text style={styles.txt}>{label}</Text>

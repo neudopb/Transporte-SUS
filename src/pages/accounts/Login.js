@@ -21,15 +21,14 @@ export function Login({ navigation }){
         resolver: yupResolver(schema)
     });
 
-    const {loginUser} = useAuth();
-    const [isLoading, setIsLoading] = useState(false);
+    const {loginUser, isLoading, setIsLoading} = useAuth();
 
     async function logi(data) {
 
         Keyboard.dismiss();
 
         try {
-            // setIsLoading(true);
+            setIsLoading(true);
             return await loginUser(data.email, data.senha);
         } catch(error) {
             setIsLoading(false);
@@ -55,11 +54,7 @@ export function Login({ navigation }){
             <Button texto="Login" color={MyTheme.colors.primary_green} onPress={ handleSubmit(logi) } />
 
             <Button texto="Cadastre-se" color={MyTheme.colors.primary_orange} onPress={ ()=> navigation.navigate('Register') } />
-
-            <TouchableOpacity style={styles.btnAdm} onPress={ ()=> navigation.navigate('HomeAdmin') }>
-                <Text style={styles.txtAdm} >ADMIN</Text>
-            </TouchableOpacity>
-
+            
         </View>
     );
 };

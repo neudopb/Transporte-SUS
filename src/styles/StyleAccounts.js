@@ -11,14 +11,6 @@ export default StyleSheet.create({
     logo: {
         marginTop: 100,
     },
-    txtAdm:{
-      fontSize: 22,
-      color: 'blue',
-      textDecorationLine: 'underline',
-    },
-    btnAdm:{
-      transform: [{translateY:80}],
-    },
 
     containerRegister: {
       flex: 1,
@@ -39,5 +31,15 @@ export default StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-    }
+    },
+    btnlogout: {
+      margin: 20,
+      paddingVertical: 7,
+      paddingHorizontal: 12,
+      borderRadius: 20,
+      backgroundColor: MyTheme.colors.white,
+    },
+    txtlogout: {
+        fontSize: 18,
+    },
 });

@@ -8,14 +8,10 @@ export function RoutesMain() {
 
     const {user} = useAuth();
 
-    if (user) {
-        if ((user.nome) && (user.motorista_ubs)) {
-            return <RoutesTransports />
-        } else if((user.nome) && (!user.motorista_ubs)) {
-            return <RoutesUsers />
-        } else {
-            return <RoutesAccounts />
-        }
+    if (user.nome && user.motorista_ubs) {
+        return <RoutesTransports />
+    } else if(user.nome && !user.motorista_ubs) {
+        return <RoutesUsers />
     } else {
         return <RoutesAccounts />
     }
