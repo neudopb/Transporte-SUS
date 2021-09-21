@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Keyboard, Alert } from 'react-native';
 import styles from '../../styles/StyleUsers';
 import MyTheme from '../../styles/MyTheme';
 import { Input } from '../../components/Input';
@@ -42,9 +42,77 @@ export function Agendar({ navigation }){
         }
     }
 
-    function agendamento(data){
-        console.log(data);
-        navigation.navigate('Home');
+    async function apiAgendamento(dados,headers){
+        try {
+            console.log("Função apiAgendamento");
+            var body = new FormData();
+            body.append('usuario', user.id);
+            body.append('destino', dados.destino);
+            body.append('data', dados.data);
+            body.append('hora', dados.hora);
+            body.append('ubs', dados.ubs);
+            body.append('minha_localizacao', dados.localizacao);
+            body.append('descricao', dados.descricao);
+
+            console.log(body);
+            console.log(headers);
+
+            const response = await api.post('agendamento/', {headers, body: body });
+            console.log(response);
+            const {data} = response.data;
+            console.log(data.id);
+
+            return data.id;
+            
+        } catch (error) {
+            console.log(error);
+            Alert.alert(error);
+        }
+    }
+
+    async function createStatus(id, headers){
+        try{
+            console.log("Função status");
+            var body = new FormData();
+            body.append('status', 2);
+            body.append('agendamento', id);
+            body.append('observacao', " ");
+
+            console.log(body);
+
+            const responseStatus = await api.post('statusagendamento/', bodyStatus, {headers, body: body });
+            console.log(responseStatus);
+
+        }catch(error){
+            console.log(error);
+            Alert.alert(error);
+        }
+
+    }
+
+    async function createAgendamento(data){
+
+        Keyboard.dismiss();
+
+        const headers = {
+            'authorization': 'Bearer ' + user.token,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+
+        try {
+            const id = await apiAgendamento(data, headers);
+            console.log("Aquiiiiiiiiiiiiiiiii");
+
+            await createStatus(id, headers);
+            console.log("Foiiiiii em nome de jesus");
+
+            navigation.navigate('Home');
+        } catch(error) {
+            console.log(error);
+            Alert.alert(error);
+        }
+
     }
 
     useEffect( () =>{
@@ -62,7 +130,7 @@ export function Agendar({ navigation }){
             <PickerTime label="Hora" largura="90%" name="hora" value={user.hora} control={control} setValue={setValue} error={ errors.hora && errors.hora.message } />
             <Input label="Descrição" largura="90%" name="descricao" control={control} error={ errors.descricao && errors.descricao.message } />
             
-            <Button texto="Agendar" color={MyTheme.colors.primary_green} onPress={ handleSubmit(agendamento)} />
+            <Button texto="Agendar" color={MyTheme.colors.primary_green} onPress={ handleSubmit(createAgendamento)} />
         </View>
 
     );
