@@ -1,11 +1,41 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, Animated, SafeAreaViewBase, SafeAreaView } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Alert, FlatList, Animated } from 'react-native';
 import styles from '../../styles/StyleUsers';
-import MyTheme from '../../styles/MyTheme';
-import { MyItem } from '../../components/MyItem';
 import { ItemList } from '../../components/ItemList';
+import { useAuth } from '../../contexts/Auth';
+
 
 export function MeusAgend({ navigation }){
+
+    const {user} = useAuth();
+    const [agendamentos, setAgendamentos] = useState([]);
+    
+    async function meusAgendamentos() {
+        try {
+            console.log('aaaaaaaaaaaaaa');
+            
+            const responseAgend = await api.get('agendamentouser/', {
+                headers: {
+                    'authorization': 'Bearer ' + user.token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            });
+            console.log(responseAgend);
+    
+            const data = responseAgend.data;
+            setAgendamentos(data);
+            console.log('aquiiii');
+            console.log(agendamentos);
+        } catch (error) {
+            console.log(error);
+            Alert.alert(error);
+        }
+    }
+
+    useEffect( () => {
+        meusAgendamentos();
+    }, []);
 
     const dados = [
         {
@@ -82,52 +112,9 @@ export function MeusAgend({ navigation }){
                         outputRange: [1, 1, 1, 0.5]
                     })
 
-                    return <Animated.View style={[styles2.viewContainer, {transform: [{scale}]} ]}>
-                                <View style={styles2.icon}></View>
-                                <View>
-                                    <Text style={styles2.txt1}>{item.text}</Text>
-                                    <Text style={styles2.txt2}>{item.text}</Text>
-                                    <Text style={styles2.txt3}>{item.text}</Text>
-                                </View>
-                            </Animated.View>
+                    return <ItemList texto={item.text} scale={scale} />
                 }}
             />
         </View>
     );
 };
-
-const styles2 = StyleSheet.create({
-    viewContainer: {
-        height: 100,
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        marginBottom: 10,
-        borderRadius: 10,
-        shadowColor: MyTheme.colors.black,
-        shadowOffset: { width: 10, height: 10},
-        shadowOpacity: 1,
-        shadowRadius: 10,
-        elevation: 5,
-        backgroundColor: 'rgba(255, 255, 255, .1)',
-    },
-    icon: {
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-        marginRight: 10,
-        backgroundColor: 'red',
-    },
-    txt1: {
-        fontSize: 22,
-        fontWeight: '700',
-    },
-    txt2: {
-        fontSize: 18,
-        opacity: .7,
-    },
-    txt3: {
-        fontSize: 14,
-        opacity: .8,
-    },
-});

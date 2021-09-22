@@ -4,8 +4,10 @@ import MyTheme from '../styles/MyTheme';
 
 export function ItemList(props) {
 
+    const scale = props.scale;
+
     return (
-        <Animated.View style={[styles.viewContainer, {transform: [props.scale]} ]}>
+        <Animated.View style={[styles.viewContainer, {transform: [{scale}]} ]}>
             <View style={styles.icon}></View>
             <View>
                 <Text style={styles.txt1}>{props.texto}</Text>
@@ -15,7 +17,7 @@ export function ItemList(props) {
         </Animated.View>
     );
 };
- 
+
 const styles = StyleSheet.create({
     viewContainer: {
         height: 100,
