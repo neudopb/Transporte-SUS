@@ -42,57 +42,7 @@ export function Agendar({ navigation }){
         }
     }
 
-    async function apiAgendamento(dados,headers){
-        try {
-            console.log("Função apiAgendamento");
-            var body = new FormData();
-            body.append('usuario', user.id);
-            body.append('destino', dados.destino);
-            body.append('data', dados.data);
-            body.append('hora', dados.hora);
-            body.append('ubs', dados.ubs);
-            body.append('minha_localizacao', dados.localizacao);
-            body.append('descricao', dados.descricao);
-
-            console.log(body);
-            console.log(headers);
-
-            const response = await api.post('agendamento/', {headers, body: body });
-            console.log(response);
-            const {data} = response.data;
-            console.log(data.id);
-
-            return data.id;
-            
-        } catch (error) {
-            console.log(error);
-            Alert.alert(error);
-        }
-    }
-
-    async function createStatus(id, headers){
-        try{
-            console.log("Função status");
-            var body = new FormData();
-            body.append('status', 2);
-            body.append('agendamento', id);
-            body.append('observacao', " ");
-
-            console.log(body);
-
-            const responseStatus = await api.post('statusagendamento/', bodyStatus, {headers, body: body });
-            console.log(responseStatus);
-
-        }catch(error){
-            console.log(error);
-            Alert.alert(error);
-        }
-
-    }
-
-    async function createAgendamento(data){
-
-        Keyboard.dismiss();
+    async function createAgendamento(dados){
 
         const headers = {
             'authorization': 'Bearer ' + user.token,
@@ -100,19 +50,41 @@ export function Agendar({ navigation }){
             'Content-Type': 'application/json',
         };
 
-        try {
-            const id = await apiAgendamento(data, headers);
-            console.log("Aquiiiiiiiiiiiiiiiii");
+        const body = {
+            'usuario': user.id,
+            'destino': dados.destino,
+            'data': dados.data,
+            'hora': dados.hora,
+            'ubs': dados.ubs,
+            'minha_localizacao': dados.localizacao,
+            'descricao': dados.descricao,
+        };
 
-            await createStatus(id, headers);
-            console.log("Foiiiiii em nome de jesus");
+        try {
+            const responseAgend = await api.post('agendamento/', body, {headers});
+            
+            const id = JSON.stringify(responseAgend.data.id);
+
+            const bodyStatus = {
+                'status': 2,
+                'agendamento': id,
+                'observacao': 'Aguardando',
+            };
+
+            try {
+                const responseStatus = await api.post('statusagendamento/', bodyStatus, {headers});
+            } catch (error) {
+                console.log(error);
+                Alert.alert(error);
+            }
 
             navigation.navigate('Home');
+
         } catch(error) {
             console.log(error);
             Alert.alert(error);
         }
-
+        
     }
 
     useEffect( () =>{
