@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import MyTheme from './MyTheme';
 
 export default StyleSheet.create({
@@ -8,6 +8,10 @@ export default StyleSheet.create({
         backgroundColor: MyTheme.colors.background_gray,
         alignItems: 'center',
         justifyContent: 'flex-start',
+    },
+    containerList: {
+        flex: 1,
+        backgroundColor: MyTheme.colors.background_gray,
     },
     logo: {
         height: 180,
@@ -38,4 +42,9 @@ export default StyleSheet.create({
         transform: [{translateY:-40}],
         textDecorationLine: 'underline',
     },
+
+    flat: {
+        padding: 15,
+        paddingTop: StatusBar.currentHeight || 40,
+    }
 });
