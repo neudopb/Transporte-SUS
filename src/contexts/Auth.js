@@ -60,6 +60,61 @@ function AuthProvider({ children }) {
 
     }
 
+    async function refreshToken() {
+
+        if (JSON.stringify(user) != JSON.stringify({})) {
+            var success = true;
+
+            try {
+                const responseUser = await api.get('usuariodados/', {
+                    headers: {
+                        'authorization': 'Bearer ' + user.token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+            } catch {
+                success = false;
+                console.log('errorToken');
+            }
+
+            if (!success){
+                try {
+                    var params = new URLSearchParams();
+                    params.append('refresh', user.refresh);
+                    
+                    const {data} = await api.post('token/refresh/', params);
+                    
+                    console.log(data);
+    
+                    const userLogged = {
+                        id : user.id,
+                        nome : user.first_name,
+                        email : user.email,
+                        motorista_ubs : user.motorista_ubs,
+                        localizacao : user.localizacao,
+                        estado : user.estado,
+                        cidade : user.cidade,
+                        ubs : user.ubs,
+                        token : data.access,
+                        refresh : user.refresh
+                    } 
+    
+                    setUser(userLogged);
+                    await AsyncStorage.removeItem(keyAsyncStorage);
+                    await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
+    
+                    console.log(user);
+    
+                } catch {
+                    console.log('errorRefresh')
+                    logout();
+                }
+            }
+        }
+    }
+
     async function logout(){
         setUser({});
         await AsyncStorage.removeItem(keyAsyncStorage);
@@ -81,7 +136,7 @@ function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, isLoading, setIsLoading, loginUser, logout }}>
+        <AuthContext.Provider value={{ user, isLoading, setIsLoading, loginUser, logout, refreshToken }}>
             { children }
         </AuthContext.Provider>
     );
