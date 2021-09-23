@@ -3,6 +3,7 @@ import { View, Alert, FlatList, Animated } from 'react-native';
 import styles from '../../styles/StyleUsers';
 import { ItemList } from '../../components/ItemList';
 import { useAuth } from '../../contexts/Auth';
+import api from '../../services/Api';
 
 
 export function MeusAgend({ navigation }){
@@ -12,8 +13,6 @@ export function MeusAgend({ navigation }){
     
     async function meusAgendamentos() {
         try {
-            console.log('aaaaaaaaaaaaaa');
-            
             const responseAgend = await api.get('agendamentouser/', {
                 headers: {
                     'authorization': 'Bearer ' + user.token,
@@ -21,11 +20,8 @@ export function MeusAgend({ navigation }){
                     'Content-Type': 'application/json',
                 }
             });
-            console.log(responseAgend);
-    
-            const data = responseAgend.data;
-            setAgendamentos(data);
-            console.log('aquiiii');
+        
+            setAgendamentos(JSON.stringify(responseAgend.data));
             console.log(agendamentos);
         } catch (error) {
             console.log(error);
