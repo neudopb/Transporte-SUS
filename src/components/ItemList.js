@@ -1,18 +1,46 @@
 import React from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import MyTheme from '../styles/MyTheme';
+import moment from 'moment';
+import api from '../services/Api';
 
 export function ItemList(props) {
 
     const scale = props.scale;
+    // const [statusAgend, setstatusAgend] = useState({});
+
+    // async function status(){
+    //     try {
+    //         console.log("Entrou");
+    //         const responseStatus = await api.get('statusporagendamento/'+ props.id, {
+    //             headers: {
+    //                 'authorization': 'Bearer ' + props.token,
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json',
+    //             }
+    //         });
+    //         console.log("aaaaaaaaaaaaaaaa");
+    //         const data = responseStatus.data;
+    //         setstatusAgend(data);
+            
+    //     } catch (error) {
+    //         console.error(error);
+    //         Alert.alert(error);   
+    //     }
+    // }
+    // useEffect( () => {
+    //     status();
+    // }, []);
 
     return (
         <Animated.View style={[styles.viewContainer, {transform: [{scale}]} ]}>
-            <View style={styles.icon}></View>
-            <View>
-                <Text style={styles.txt1}>{props.texto}</Text>
-                <Text style={styles.txt2}>{props.texto}</Text>
-                <Text style={styles.txt3}>{props.texto}</Text>
+            <View style={styles.viewText}>
+                <View style={styles.viewStatus}>
+                    <Text style={styles.txt2}>{moment(props.data).format('DD-MM-YYYY')} | {props.hora}</Text>
+                    <Text style={styles.status}>Aguardando</Text>
+                </View>
+                <Text style={styles.txt1}>{props.destino}</Text>
+                <Text style={styles.txt3}>Observação:</Text>
             </View>
         </Animated.View>
     );
@@ -33,23 +61,35 @@ const styles = StyleSheet.create({
         elevation: 5,
         backgroundColor: 'rgba(255, 255, 255, .1)',
     },
-    icon: {
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-        marginRight: 10,
-        backgroundColor: 'red',
+    viewText:{
+        flex: 1,
+        paddingLeft: 10,
     },
     txt1: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: '700',
     },
     txt2: {
         fontSize: 18,
-        opacity: .7,
+        opacity: .9,
     },
     txt3: {
-        fontSize: 14,
+        fontSize: 16,
         opacity: .8,
+        flexWrap: 'wrap',
+    },
+    status:{
+        width: 100,
+        padding: 3,
+        marginRight: 10,
+        textAlign: 'center',
+        fontSize: 16,
+        color: MyTheme.colors.white,
+        borderRadius: 15,
+        backgroundColor: MyTheme.colors.status_yellow
+    },
+    viewStatus:{
+        flexDirection:'row',
+        justifyContent:'space-between',
     },
 });

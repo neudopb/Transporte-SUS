@@ -20,11 +20,10 @@ export function MeusAgend({ navigation }){
                     'Content-Type': 'application/json',
                 }
             });
-        
-            setAgendamentos(JSON.stringify(responseAgend.data));
-            console.log(agendamentos);
+            const data = responseAgend.data;
+            setAgendamentos(data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             Alert.alert(error);
         }
     }
@@ -33,64 +32,13 @@ export function MeusAgend({ navigation }){
         meusAgendamentos();
     }, []);
 
-    const dados = [
-        {
-            id: 1,
-            text: "Teste 1",
-        },
-        {
-            id: 2,
-            text: "Teste 2",
-        },
-        {
-            id: 3,
-            text: "Teste 3",
-        },
-        {
-            id: 4,
-            text: "Teste 4",
-        },
-        {
-            id: 5,
-            text: "Teste 5",
-        },
-        {
-            id: 6,
-            text: "Teste 6",
-        },
-        {
-            id: 7,
-            text: "Teste 7",
-        },
-        {
-            id: 8,
-            text: "Teste 8",
-        },
-        {
-            id: 9,
-            text: "Teste 9",
-        },
-        {
-            id: 10,
-            text: "Teste 10",
-        },
-        {
-            id: 11,
-            text: "Teste 11",
-        },
-        {
-            id: 12,
-            text: "Teste 12",
-        },
-    ];
-
     const scrollY = React.useRef(new Animated.Value(0)).current;
 
     return (
         <View style={styles.containerList}>
 
             <Animated.FlatList  
-                data={dados}
+                data={agendamentos}
                 onScroll={Animated.event(
                     [{ nativeEvent: {contentOffset: {y: scrollY}}}],
                     {useNativeDriver: true}
@@ -108,7 +56,7 @@ export function MeusAgend({ navigation }){
                         outputRange: [1, 1, 1, 0.5]
                     })
 
-                    return <ItemList texto={item.text} scale={scale} />
+                    return <ItemList token={user.token} id={item.id} data={item.data} hora={item.hora} descricao={item.descricao} destino={item.destino} scale={scale} />
                 }}
             />
         </View>
