@@ -34,7 +34,7 @@ export function Historico({ navigation }){
 
             const data = responseAgend.data;
 
-            setAgendamentos(data);
+            setAgendamentos(data.sort((a,b) => (a.data < b.data ? 1 : b.data < a.data ? -1 : 0)));
         } catch (error) {
             console.error(error);
             Alert.alert(error);
@@ -50,7 +50,7 @@ export function Historico({ navigation }){
         <View style={styles.containerList}>
 
             <Animated.FlatList  
-                data={agendamentos.sort((a,b) => (a.data < b.data ? 1 : b.data < a.data ? -1 : 0))}
+                data={agendamentos}
                 onScroll={Animated.event(
                     [{ nativeEvent: {contentOffset: {y: scrollY}}}],
                     {useNativeDriver: true}

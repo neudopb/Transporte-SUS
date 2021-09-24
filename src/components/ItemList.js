@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import MyTheme from '../styles/MyTheme';
 import moment from 'moment';
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export function ItemList(props) {
 
@@ -27,7 +29,7 @@ export function ItemList(props) {
         <Animated.View style={[styles.viewContainer, {transform: [{scale}]} ]}>
             <View style={styles.viewText}>
                 <View style={styles.viewStatus}>
-                    <Text style={styles.txt2}>{moment(props.data).format('DD-MM-YYYY')} | {props.hora}</Text>
+                    <Text style={styles.txt2}><FontAwesome name="calendar-check-o" size={24} color="black" /> {moment(props.data).format('DD-MM-YYYY')} <MaterialCommunityIcons name="clock-time-three-outline" size={24} color="black" /> {props.hora} </Text>
                     <Text style={[styles.status, {backgroundColor: cor}]}>{props.status}</Text>
                 </View>
                 <Text style={styles.txt1}>{props.destino}</Text>

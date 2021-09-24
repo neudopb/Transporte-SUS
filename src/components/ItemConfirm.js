@@ -1,44 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import MyTheme from '../styles/MyTheme';
 import moment from 'moment';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export function ItemHistorico(props) {
+export function ItemConfirm(props) {
 
     const scale = props.scale;
-
-    const [cor, setCor] = useState(MyTheme.colors.status_yellow);
-
-    function corStatus(){
-
-        if(props.status == 'Confirmado'){
-            setCor(MyTheme.colors.status_green);
-        } else if(props.status == 'Cancelado'){
-            setCor(MyTheme.colors.status_red);
-        }
-    }
-
-    useEffect( () => {
-        corStatus();
-    }, []);
 
     return (
         <Animated.View style={[styles.viewContainer, {transform: [{scale}]} ]}>
             <View style={styles.viewText}>
-                <View style={styles.viewStatus}>
-                    <Text style={styles.txt2}><FontAwesome name="calendar-check-o" size={24} color="black" /> {moment(props.data).format('DD-MM-YYYY')} <MaterialCommunityIcons name="clock-time-three-outline" size={24} color="black" /> {props.hora} </Text>
-                    <Text style={[styles.status, {backgroundColor: cor}]}>{props.status}</Text>
-                </View>
+                <Text style={styles.txt2}><FontAwesome name="calendar-check-o" size={24} color="black" /> {moment(props.data).format('DD-MM-YYYY')} <MaterialCommunityIcons name="clock-time-three-outline" size={24} color="black" /> {props.hora}</Text>
                 <Text style={styles.txt2}><Text style={styles.titulo}>Paciente: </Text>{props.nome}</Text>
+                <Text style={styles.txt2}><Text style={styles.titulo}>Endereço: </Text>{props.endereco}</Text>
                 <Text style={styles.txt2}><Text style={styles.titulo}>Destino: </Text>{props.destino}</Text>
                 <Text style={styles.txt3}><Text style={styles.titulo}>Descrição: </Text>{props.descricao}</Text>
             </View>
         </Animated.View>
     );
-};
- 
+}
+
 const styles = StyleSheet.create({
     viewContainer: {
         height: 180,
@@ -66,20 +49,6 @@ const styles = StyleSheet.create({
         fontSize: 17,
         opacity: .8,
         flexWrap: 'wrap',
-    },
-    status:{
-        width: 100,
-        padding: 3,
-        marginRight: 10,
-        textAlign: 'center',
-        fontSize: 16,
-        color: MyTheme.colors.white,
-        borderRadius: 15,
-    },
-    viewStatus:{
-        paddingTop: 5,
-        flexDirection:'row',
-        justifyContent:'space-between',
     },
     titulo: {
         fontWeight: 'bold',
