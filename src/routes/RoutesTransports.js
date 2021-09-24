@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { HomeAdmin } from '../pages/transports/HomeAdmin';
 import { SolicConfirmadas } from '../pages/transports/SolicConfirmadas';
 import { SolicPendentes } from '../pages/transports/SolicPendentes';
+import { Historico } from '../pages/transports/Historico';
 import MyTheme from '../styles/MyTheme';
 import styles from '../styles/StyleAccounts';
 import { useAuth } from '../contexts/Auth';
@@ -56,6 +57,20 @@ export function RoutesTransports() {
                 component={SolicPendentes}
                 options={{
                     title:"Solicitações Pendentes", headerTitleStyle: {
+                        fontSize: 25,
+                        color: MyTheme.colors.white,
+                    },
+                    headerStyle: {
+                        backgroundColor: MyTheme.colors.primary_green,
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name="Historico"
+                component={Historico}
+                options={{
+                    title:"Histórico", headerTitleStyle: {
                         fontSize: 25,
                         color: MyTheme.colors.white,
                     },

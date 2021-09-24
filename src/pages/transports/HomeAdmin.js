@@ -12,7 +12,7 @@ export function HomeAdmin({ navigation }){
             <View style={styles.viewBtn}>
                 <ButtonLarge texto="Solicitações Confirmadas" icon="check-square-o" color={MyTheme.colors.primary_green} onPress={ ()=> navigation.navigate('SolicConfirmadas') } />
                 <ButtonLarge texto="Solicitações Pendentes" icon="hourglass-half" color={MyTheme.colors.primary_orange} onPress={ ()=> navigation.navigate('SolicPendentes') } />
-                <ButtonLarge texto="Histórico" icon="folder-open" color={MyTheme.colors.gray2} onPress={ ()=> navigation.navigate('SolicConfirmadas') } />
+                <ButtonLarge texto="Histórico" icon="folder-open" color={MyTheme.colors.gray2} onPress={ ()=> navigation.navigate('Historico') } />
             </View>
         </View>
     );

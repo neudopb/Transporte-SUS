@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Animated } from 'react-native';
 import MyTheme from '../styles/MyTheme';
 import moment from 'moment';
 
-export function ItemList(props) {
+export function ItemHistorico(props) {
 
     const scale = props.scale;
 
@@ -22,7 +22,6 @@ export function ItemList(props) {
         corStatus();
     }, []);
 
-
     return (
         <Animated.View style={[styles.viewContainer, {transform: [{scale}]} ]}>
             <View style={styles.viewText}>
@@ -30,16 +29,17 @@ export function ItemList(props) {
                     <Text style={styles.txt2}>{moment(props.data).format('DD-MM-YYYY')} | {props.hora}</Text>
                     <Text style={[styles.status, {backgroundColor: cor}]}>{props.status}</Text>
                 </View>
-                <Text style={styles.txt1}>{props.destino}</Text>
-                <Text style={styles.txt3}>Observação: {props.observacao}</Text>
+                <Text style={styles.txt2}><Text style={styles.titulo}>Paciente: </Text>{props.nome}</Text>
+                <Text style={styles.txt2}><Text style={styles.titulo}>Destino: </Text>{props.destino}</Text>
+                <Text style={styles.txt3}><Text style={styles.titulo}>Descrição: </Text>{props.descricao}</Text>
             </View>
         </Animated.View>
     );
 };
-
+ 
 const styles = StyleSheet.create({
     viewContainer: {
-        height: 150,
+        height: 180,
         flexDirection: 'row',
         alignItems: 'center',
         padding: 10,
@@ -56,16 +56,12 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 10,
     },
-    txt1: {
-        fontSize: 20,
-        fontWeight: '700',
-    },
     txt2: {
         fontSize: 18,
         opacity: .9,
     },
     txt3: {
-        fontSize: 16,
+        fontSize: 17,
         opacity: .8,
         flexWrap: 'wrap',
     },
@@ -79,7 +75,11 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     viewStatus:{
+        paddingTop: 5,
         flexDirection:'row',
         justifyContent:'space-between',
     },
+    titulo: {
+        fontWeight: 'bold',
+    }
 });

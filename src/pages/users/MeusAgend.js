@@ -11,6 +11,8 @@ export function MeusAgend({ navigation }){
     const {user} = useAuth();
     const [agendamentos, setAgendamentos] = useState([]);
     
+    const scrollY = React.useRef(new Animated.Value(0)).current;
+    
     async function meusAgendamentos() {
         try {
             const responseAgend = await api.get('agendamentouser/', {
@@ -32,8 +34,6 @@ export function MeusAgend({ navigation }){
         meusAgendamentos();
     }, []);
 
-    const scrollY = React.useRef(new Animated.Value(0)).current;
-
     return (
         <View style={styles.containerList}>
 
@@ -50,13 +50,13 @@ export function MeusAgend({ navigation }){
                     const scale = scrollY.interpolate({ 
                         inputRange : [
                             -1, 0,
-                            100 * index,
-                            100 * (index + 2)
+                            150 * index,
+                            150 * (index + 2)
                         ],
                         outputRange: [1, 1, 1, 0.5]
                     })
 
-                    return <ItemList token={user.token} id={item.id} data={item.data} hora={item.hora} destino={item.destino} observacao={item.status.observacao} status={item.status.status} scale={scale} />
+                    return <ItemList data={item.data} hora={item.hora} destino={item.destino} observacao={item.status.observacao} status={item.status.status} scale={scale} />
                 }}
             />
         </View>

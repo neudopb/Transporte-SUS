@@ -83,8 +83,6 @@ function AuthProvider({ children }) {
                     params.append('refresh', user.refresh);
                     
                     const {data} = await api.post('token/refresh/', params);
-                    
-                    console.log(data);
     
                     const userLogged = {
                         id : user.id,
@@ -100,8 +98,6 @@ function AuthProvider({ children }) {
                     setUser(userLogged);
                     await AsyncStorage.removeItem(keyAsyncStorage);
                     await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(userLogged));
-    
-                    console.log(user);
     
                 } catch {
                     console.log('errorRefresh')
