@@ -38,7 +38,7 @@ export function MeusAgend({ navigation }){
         <View style={styles.containerList}>
 
             <Animated.FlatList  
-                data={agendamentos}
+                data={agendamentos.sort((a,b) => (a.data < b.data ? 1 : b.data < a.data ? -1 : 0))}
                 onScroll={Animated.event(
                     [{ nativeEvent: {contentOffset: {y: scrollY}}}],
                     {useNativeDriver: true}
@@ -56,7 +56,7 @@ export function MeusAgend({ navigation }){
                         outputRange: [1, 1, 1, 0.5]
                     })
 
-                    return <ItemList token={user.token} id={item.id} data={item.data} hora={item.hora} descricao={item.descricao} destino={item.destino} scale={scale} />
+                    return <ItemList token={user.token} id={item.id} data={item.data} hora={item.hora} destino={item.destino} observacao={item.status.observacao} status={item.status.status} scale={scale} />
                 }}
             />
         </View>

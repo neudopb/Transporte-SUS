@@ -35,10 +35,16 @@ export function Agendar({ navigation }){
 
     async function listUbs(){
         try {
-            const {data} = await api.get('ubslist/');
+            const {data} = await api.get('ubsdetailcidade/'+ user.cidade.id, {
+                headers: {
+                    'authorization': 'Bearer ' + user.token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            });
             setUbsList(data);
         } catch(error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -62,26 +68,10 @@ export function Agendar({ navigation }){
 
         try {
             const responseAgend = await api.post('agendamento/', body, {headers});
-            
-            const id = JSON.stringify(responseAgend.data.id);
-
-            const bodyStatus = {
-                'status': 2,
-                'agendamento': id,
-                'observacao': 'Aguardando',
-            };
-
-            try {
-                const responseStatus = await api.post('statusagendamento/', bodyStatus, {headers});
-            } catch (error) {
-                console.log(error);
-                Alert.alert(error);
-            }
-
             navigation.navigate('Home');
 
         } catch(error) {
-            console.log(error);
+            console.error(error);
             Alert.alert(error);
         }
         

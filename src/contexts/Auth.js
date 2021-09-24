@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
                 }
             });
 
-            const { id, first_name, email, motorista_ubs, localizacao, estado, cidade, ubs } = responseUser.data[0];
+            const { id, first_name, email, motorista_ubs, localizacao, cidade } = responseUser.data[0];
 
             const userLogged = {
                 id : id,
@@ -42,9 +42,7 @@ function AuthProvider({ children }) {
                 email : email,
                 motorista_ubs : motorista_ubs,
                 localizacao : localizacao,
-                estado : estado,
                 cidade : cidade,
-                ubs : ubs,
                 token : token,
                 refresh : refresh
             }
@@ -94,9 +92,7 @@ function AuthProvider({ children }) {
                         email : user.email,
                         motorista_ubs : user.motorista_ubs,
                         localizacao : user.localizacao,
-                        estado : user.estado,
                         cidade : user.cidade,
-                        ubs : user.ubs,
                         token : data.access,
                         refresh : user.refresh
                     } 

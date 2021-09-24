@@ -1,46 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import MyTheme from '../styles/MyTheme';
 import moment from 'moment';
-import api from '../services/Api';
 
 export function ItemList(props) {
 
     const scale = props.scale;
-    // const [statusAgend, setstatusAgend] = useState({});
 
-    // async function status(){
-    //     try {
-    //         console.log("Entrou");
-    //         const responseStatus = await api.get('statusporagendamento/'+ props.id, {
-    //             headers: {
-    //                 'authorization': 'Bearer ' + props.token,
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json',
-    //             }
-    //         });
-    //         console.log("aaaaaaaaaaaaaaaa");
-    //         const data = responseStatus.data;
-    //         setstatusAgend(data);
-            
-    //     } catch (error) {
-    //         console.error(error);
-    //         Alert.alert(error);   
-    //     }
-    // }
-    // useEffect( () => {
-    //     status();
-    // }, []);
+    const [cor, setCor] = useState(MyTheme.colors.status_yellow);
+
+    function corStatus(){
+
+        if(props.status == 'Confirmado'){
+            setCor(MyTheme.colors.status_green);
+        }else if(props.status == 'Cancelado'){
+            setCor(MyTheme.colors.status_red);
+        }
+        console.log(cor);
+    }
+
+    useEffect( () => {
+        corStatus();
+    }, []);
+
 
     return (
         <Animated.View style={[styles.viewContainer, {transform: [{scale}]} ]}>
             <View style={styles.viewText}>
                 <View style={styles.viewStatus}>
                     <Text style={styles.txt2}>{moment(props.data).format('DD-MM-YYYY')} | {props.hora}</Text>
-                    <Text style={styles.status}>Aguardando</Text>
+                    <Text style={[styles.status, {backgroundColor: cor}]}>{props.status}</Text>
                 </View>
                 <Text style={styles.txt1}>{props.destino}</Text>
-                <Text style={styles.txt3}>Observação:</Text>
+                <Text style={styles.txt3}>Observação: {props.observacao}</Text>
             </View>
         </Animated.View>
     );
@@ -86,7 +78,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: MyTheme.colors.white,
         borderRadius: 15,
-        backgroundColor: MyTheme.colors.status_yellow
     },
     viewStatus:{
         flexDirection:'row',

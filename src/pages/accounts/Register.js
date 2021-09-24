@@ -13,9 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object().shape({
     nome: yup.string().required("Informe o nome"),
-    estado: yup.number().integer().positive("Escolha uma opção válida").required("Informe o Estado"),
     cidade: yup.number().integer().positive("Escolha uma opção válida").required("Informe a cidade"),
-    ubs: yup.number().integer().positive("Escolha uma opção válida").required("Informe a Ubs"),
     localizacao: yup.string().required("Informe a sua localização"),
     email: yup.string().email().required("Informe um E-mail valido"),
     senha: yup.string().min(8, "Senha deve conter pelo menos 8 caracteres").required("Informe a senha"),
@@ -28,32 +26,13 @@ export function Register({ navigation }){
         resolver: yupResolver(schema)
     });
 
-    const [estadoList, setEstadoList] = useState([]);
     const [cidadeList, setCidadeList] = useState([]);
-    const [ubsList, setUbsList] = useState([]);
 
-    async function listEstado(){
-        try {
-            const {data} = await api.get('estadolist/');
-            setEstadoList(data);
-        } catch(error) {
-            console.log(error);
-        }
-    }
 
     async function listCidade(){
         try {
             const {data} = await api.get('cidadelist/');
             setCidadeList(data);
-        } catch(error) {
-            console.log(error);
-        }
-    }
-
-    async function listUbs(){
-        try {
-            const {data} = await api.get('ubslist/');
-            setUbsList(data);
         } catch(error) {
             console.log(error);
         }
@@ -67,9 +46,7 @@ export function Register({ navigation }){
         params.append('password', data.senha);
         params.append('first_name', data.nome);
         params.append('motorista_ubs', false);
-        params.append('estado', data.estado);
         params.append('cidade', data.cidade);
-        params.append('ubs', data.ubs);
         params.append('localizacao', data.localizacao);
         params.append('is_active', true);
         params.append('is_staff', true);
@@ -88,9 +65,7 @@ export function Register({ navigation }){
     }
 
     useEffect( () =>{
-        listEstado();
         listCidade();
-        listUbs();
     },[]); 
 
     return (
@@ -99,9 +74,7 @@ export function Register({ navigation }){
                 <Text style={styles.title}>Preencha suas Informações</Text>
                 
                 <Input label="Nome" name="nome" control={control} error={ errors.nome && errors.nome.message } />
-                <Select datas= {estadoList} label="Estado" name="estado" control={control} setValue={setValue} error={ errors.estado && errors.estado.message } />
                 <Select datas= {cidadeList} label="Cidade" name="cidade" control={control} setValue={setValue} error={ errors.cidade && errors.cidade.message } />
-                <Select datas= {ubsList} label="UBS" name="ubs" control={control} setValue={setValue} error={ errors.ubs && errors.ubs.message } />
                 <Input label="Minha Localização" name="localizacao" control={control} error={ errors.localizacao && errors.localizacao.message } />
                 <Input label="E-mail" name="email" control={control} error={ errors.email && errors.email.message } />
                 <Input label="Senha" name="senha" control={control} error={ errors.senha && errors.senha.message } secureTextEntry={true} />
