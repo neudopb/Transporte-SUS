@@ -47,8 +47,6 @@ export function SolicConfirmadas({ navigation }){
                 })
             );
 
-            // setAgendamentos(agendamentos.sort((a,b) => (a.data < b.data ? 1 : b.data < a.data ? -1 : 0)));
-
         } catch (error) {
             console.error(error);
             Alert.alert(error);

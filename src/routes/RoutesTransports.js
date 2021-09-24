@@ -5,6 +5,7 @@ import { HomeAdmin } from '../pages/transports/HomeAdmin';
 import { SolicConfirmadas } from '../pages/transports/SolicConfirmadas';
 import { SolicPendentes } from '../pages/transports/SolicPendentes';
 import { Historico } from '../pages/transports/Historico';
+import { StatusAgend } from '../pages/transports/StatusAgend';
 import MyTheme from '../styles/MyTheme';
 import styles from '../styles/StyleAccounts';
 import { useAuth } from '../contexts/Auth';
@@ -79,6 +80,21 @@ export function RoutesTransports() {
                     },
                 }}
             />
+
+            <Stack.Screen
+                name="StatusAgend"
+                component={StatusAgend}
+                options={{
+                    title:"Solicitação", headerTitleStyle: {
+                        fontSize: 25,
+                        color: MyTheme.colors.white,
+                    },
+                    headerStyle: {
+                        backgroundColor: MyTheme.colors.primary_green,
+                    },
+                }}
+            />
+
 
         </Stack.Navigator>
     );
