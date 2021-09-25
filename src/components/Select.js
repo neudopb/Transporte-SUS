@@ -1,11 +1,12 @@
-import React from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useEffect} from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MyTheme from '../styles/MyTheme';
 import { Picker } from '@react-native-picker/picker';
 import { useForm, Controller } from 'react-hook-form';
 
 
 export function Select({ datas, largura, label, control, setValue, value, name, error, ...rest }) {
+    
     return (
         <View style={[styles.viewBtn, largura ? {width: largura}:'']}>
             <Text style={styles.txt}>{label}</Text>
