@@ -20,10 +20,22 @@ export function Select({ datas, largura, label, control, setValue, value, name, 
                             onValueChange = {(itemValue) => setValue(name, itemValue)
                             
                         }>
-                            <Picker.Item key={'unselectable'} disabled ={true} enabled = {false} label="Selecione uma opção" value='-1' />
+                            {  
+                                value ?
+                                    <Picker.Item style={{fontSize: 18}} label={value} value={value} key={value} />
+                                :
+                                    <Picker.Item key={'unselectable'} disabled ={true} enabled = {false} label="Selecione uma opção" value='-1' />
+                            }
+                            
                             {
                                 datas.map(d => {
-                                    return  <Picker.Item style={{fontSize: 18}}label={d.nome} value={d.id} key={d.id}/>
+                                    if (d.nome !== value) {
+                                        return  <Picker.Item style={{fontSize: 18}} label={d.nome} value={d.id} key={d.id}/>
+                                    } 
+                                    // else {
+                                    //     return  <Picker.Item style={{fontSize: 18}} label={d.nome} value={d.id} key={d.id}/>
+                                    // }
+                                    
                                 })
                             }
                         </Picker>

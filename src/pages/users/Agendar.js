@@ -79,6 +79,7 @@ export function Agendar({ navigation }){
 
     useEffect( () =>{
         listUbs();
+        setValue('localizacao', user.localizacao);
     },[]); 
 
     return (

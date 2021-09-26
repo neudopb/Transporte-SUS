@@ -15,6 +15,7 @@ export function Input({ largura, label, control, name, error, ...rest }) {
                     <TextInput style={styles.inp}
                         onBlur={onBlur} {...rest}
                         onChangeText={onChange}
+                        value={value}
                     />
                 )}
                 name={name}

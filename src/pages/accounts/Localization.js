@@ -4,7 +4,7 @@ import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import MapViewDirections from 'react-native-maps-directions';
-import config from "../../../config"
+// import config from "../../../config"
 
 export function Localization(){
 

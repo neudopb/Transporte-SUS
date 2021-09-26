@@ -32,32 +32,35 @@ export function StatusAgend({ navigation, route }){
     function dadosStatus() {
         const dados = [
             {
-                id: 1,
+                id: 'Aguardando',
                 nome: 'Aguardando'
             },
             {
-                id: 2,
+                id: 'Confirmado',
                 nome: 'Confirmado'
             },
             {
-                id: 3,
+                id: 'Cancelado',
                 nome: 'Cancelado'
             },
         ];
-        
+
+        // setValue('observacao', agendamento.status.observacao);
+        setValue('status', agendamento.status.status);
+
         setNomeStatus(dados);
     }
 
     async function atualizarStatus(data) {
 
-        const stt = nomeStatus.filter(item => {
-            if (item.id == data.status) {
-                return item.nome;
-            }
-        })[0].nome
+        // const stt = nomeStatus.filter(item => {
+        //     if (item.id == data.status) {
+        //         return item.nome;
+        //     }
+        // })[0].nome
 
         const body = {
-            'status': stt,
+            'status': data.status,
             'observacao': data.observacao, 
         };
 
@@ -67,14 +70,14 @@ export function StatusAgend({ navigation, route }){
             'Content-Type': 'application/json',
         };
 
-        try {
-            const responseStatus = await api.put('statusagendamento/' + agendamento.status.id + '/', body, { headers });
+        // try {
+        //     const responseStatus = await api.put('statusagendamento/' + agendamento.status.id + '/', body, { headers });
 
-            navigation.navigate('HomeAdmin');
-        } catch (error) {
-            console.error(error);
-            Alert.alert(error);
-        }
+        //     navigation.navigate('HomeAdmin');
+        // } catch (error) {
+        //     console.error(error);
+        //     Alert.alert(error);
+        // }
     }
 
     useEffect( () => {
