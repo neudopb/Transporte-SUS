@@ -6,6 +6,7 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import {Select} from '../../components/Select';
 import api from '../../services/Api';
+import { ButtonLocation } from '../../components/ButtonLocation';
 
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
@@ -75,7 +76,7 @@ export function Register({ navigation }){
                 
                 <Input label="Nome" name="nome" control={control} error={ errors.nome && errors.nome.message } />
                 <Select datas= {cidadeList} label="Cidade" name="cidade" control={control} setValue={setValue} error={ errors.cidade && errors.cidade.message } />
-                <Input label="Minha Localização" name="localizacao" control={control} error={ errors.localizacao && errors.localizacao.message } />
+                <ButtonLocation label="Minha Localização" name="localizacao" control={control} largura='100%' setValue={setValue} error={ errors.localizacao && errors.localizacao.message } />
                 <Input label="E-mail" name="email" control={control} error={ errors.email && errors.email.message } />
                 <Input label="Senha" name="senha" control={control} error={ errors.senha && errors.senha.message } secureTextEntry={true} />
                 <Input label="Confirmar Senha" name="confirmarSenha" control={control} error={ errors.confirmarSenha && errors.confirmarSenha.message } secureTextEntry={true} />

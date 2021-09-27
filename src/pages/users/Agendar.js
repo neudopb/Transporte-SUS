@@ -9,6 +9,7 @@ import { PickerDate } from '../../components/PickerDate';
 import { PickerTime } from '../../components/PickerTime';
 import api from '../../services/Api';
 import { useAuth } from '../../contexts/Auth';
+import { ButtonLocation } from '../../components/ButtonLocation';
 
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
@@ -88,7 +89,7 @@ export function Agendar({ navigation }){
             <Text style={styles.title}>Preencha as Informações</Text>
 
             <Select datas= {ubsList} label="UBS" largura="90%" name="ubs" value={user.ubs} control={control} setValue={setValue} error={ errors.ubs && errors.ubs.message } />
-            <Input label="Minha Localização" largura="90%" name="localizacao" control={control} error={ errors.localizacao && errors.localizacao.message } />
+            <ButtonLocation label="Minha Localização" name="localizacao" control={control} largura='90%' setValue={setValue} error={ errors.localizacao && errors.localizacao.message } />
             <Input label="Destino" largura="90%" name="destino" control={control} error={ errors.destino && errors.destino.message } />
             <PickerDate label="Data" largura="90%" name="data" value={user.data} control={control} setValue={setValue} error={ errors.data && errors.data.message } />
             <PickerTime label="Hora" largura="90%" name="hora" value={user.hora} control={control} setValue={setValue} error={ errors.hora && errors.hora.message } />

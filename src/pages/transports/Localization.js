@@ -28,16 +28,6 @@ export function Localization({navigation, route}){
         const { status} = await Location.requestForegroundPermissionsAsync();
 
         if (status === 'granted') {
-            // let location = await Location.getLastKnownPositionAsync({accuracy: Location.Accuracy.Balanced,});
-
-            // setOrigin({
-            //     latitude: location.coords.latitude,
-            //     longitude: location.coords.longitude,
-            //     latitudeDelta: 0.00922,
-            //     longitudeDelta: 0.00421,
-
-            // });
-
             setOrigin({
                 latitude: latitudUser,
                 longitude: longitudUser,

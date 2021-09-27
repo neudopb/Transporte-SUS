@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext, useEffect } from 'react';
 import { Alert } from 'react-native';
 import api from '../services/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Location from 'expo-location';
 
 
 const AuthContext = createContext({});
@@ -123,12 +124,23 @@ function AuthProvider({ children }) {
         setIsLoading(false);
     }
 
+    async function myLocalization(){
+        const {status} = await Location.requestForegroundPermissionsAsync();
+
+        if (status === 'granted') {
+            let location = await Location.getLastKnownPositionAsync({accuracy: Location.Accuracy.Balanced,});
+            const loc = (location.coords.latitude + '|' + location.coords.longitude).toString();
+            return loc;
+        }
+        return '';
+    }
+
     useEffect( () => {
         loadData();
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, isLoading, setIsLoading, loginUser, logout, refreshToken }}>
+        <AuthContext.Provider value={{ user, isLoading, setIsLoading, loginUser, logout, refreshToken, myLocalization }}>
             { children }
         </AuthContext.Provider>
     );
