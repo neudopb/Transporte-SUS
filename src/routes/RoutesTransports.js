@@ -6,6 +6,7 @@ import { SolicConfirmadas } from '../pages/transports/SolicConfirmadas';
 import { SolicPendentes } from '../pages/transports/SolicPendentes';
 import { Historico } from '../pages/transports/Historico';
 import { StatusAgend } from '../pages/transports/StatusAgend';
+import { Localization } from '../pages/transports/Localization';
 import MyTheme from '../styles/MyTheme';
 import styles from '../styles/StyleAccounts';
 import { useAuth } from '../contexts/Auth';
@@ -86,6 +87,20 @@ export function RoutesTransports() {
                 component={StatusAgend}
                 options={{
                     title:"Solicitação", headerTitleStyle: {
+                        fontSize: 25,
+                        color: MyTheme.colors.white,
+                    },
+                    headerStyle: {
+                        backgroundColor: MyTheme.colors.primary_green,
+                    },
+                }}
+            />
+
+            <Stack.Screen
+                name="Localization"
+                component={Localization}
+                options={{
+                    title:"Localização", headerTitleStyle: {
                         fontSize: 25,
                         color: MyTheme.colors.white,
                     },

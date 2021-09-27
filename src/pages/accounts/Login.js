@@ -54,7 +54,6 @@ export function Login({ navigation }){
             <Button texto="Entrar" color={MyTheme.colors.primary_green} onPress={ handleSubmit(logi) } />
 
             <Button texto="Cadastre-se" color={MyTheme.colors.primary_orange} onPress={ ()=> navigation.navigate('Register') } />
-            <Button texto="Location" color={MyTheme.colors.primary_orange} onPress={ ()=> navigation.navigate('Localization') } />
             
         </View>
     );

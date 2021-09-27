@@ -79,7 +79,7 @@ export function SolicConfirmadas({ navigation }){
                         outputRange: [1, 1, 1, 0.5]
                     })
 
-                    return <ItemConfirm data={item.data} hora={item.hora} endereco={item.minha_localizacao} destino={item.destino} descricao={item.descricao} nome={item.usuario.first_name} scale={scale} />
+                    return <ItemConfirm navigation = {navigation} data={item.data} hora={item.hora} endereco={item.minha_localizacao} destino={item.destino} descricao={item.descricao} nome={item.usuario.first_name} scale={scale} />
                 }}
             />
         </View>

@@ -34,6 +34,7 @@ export function Agendar({ navigation }){
     const [ubsList, setUbsList] = useState([]);
 
     async function listUbs(){
+
         try {
             const {data} = await api.get('ubsdetailcidade/'+ user.cidade.id, {
                 headers: {

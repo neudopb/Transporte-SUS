@@ -14,6 +14,8 @@ export default {
 
         white: '#FFFFFF',
         black: '#000000',
-        blue: '#146ca1'
+
+        blue: '#146ca1',
+        blueMap: '#87CEFA',
     }
 }

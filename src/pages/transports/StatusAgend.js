@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/Auth';
 import { Input } from '../../components/Input';
 import {Select} from '../../components/Select';
 import { Button } from '../../components/Button';
+import { ButtonMap } from '../../components/ButtonMap';
 
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
@@ -45,7 +46,7 @@ export function StatusAgend({ navigation, route }){
             },
         ];
 
-        // setValue('observacao', agendamento.status.observacao);
+        setValue('observacao', agendamento.status.observacao);
         setValue('status', agendamento.status.status);
 
         setNomeStatus(dados);
@@ -70,14 +71,14 @@ export function StatusAgend({ navigation, route }){
             'Content-Type': 'application/json',
         };
 
-        // try {
-        //     const responseStatus = await api.put('statusagendamento/' + agendamento.status.id + '/', body, { headers });
+        try {
+            const responseStatus = await api.put('statusagendamento/' + agendamento.status.id + '/', body, { headers });
 
-        //     navigation.navigate('HomeAdmin');
-        // } catch (error) {
-        //     console.error(error);
-        //     Alert.alert(error);
-        // }
+            navigation.navigate('HomeAdmin');
+        } catch (error) {
+            console.error(error);
+            Alert.alert(error);
+        }
     }
 
     useEffect( () => {
@@ -92,7 +93,7 @@ export function StatusAgend({ navigation, route }){
                     <Text style={styles.txt2}><FontAwesome name="calendar-check-o" size={24} color="black" /> {moment(agendamento.data).format('DD-MM-YYYY')} <MaterialCommunityIcons name="clock-time-three-outline" size={24} color="black" /> {agendamento.hora} </Text>
                     <Text style={styles.txt2}><Text style={styles.titulo}>Paciente: </Text>{agendamento.usuario.first_name}</Text>
                     <Text style={styles.txt2}><Text style={styles.titulo}>E-mail: </Text>{agendamento.usuario.email}</Text>
-                    <Text style={styles.txt2}><Text style={styles.titulo}>Endereço: </Text>{agendamento.minha_localizacao}</Text>
+                    <ButtonMap onPress={() => navigation.navigate('Localization', agendamento.minha_localizacao) } />
                     <Text style={styles.txt2}><Text style={styles.titulo}>Destino: </Text>{agendamento.destino}</Text>
                     <Text style={styles.txt3}><Text style={styles.titulo}>Descrição: </Text>{agendamento.descricao}</Text>
                 </View>
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 10,
         paddingTop: 7,
+        width: '100%',
     },
     viewForm: {
         flex: 1,
