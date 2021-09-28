@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btn: {
-        width: '40%',
+        width: '45%',
         height: '100%',
         borderRadius: 30,
         alignItems: 'center',
