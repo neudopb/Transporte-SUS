@@ -34,14 +34,16 @@ export function Localization({navigation, route}){
     };
 
     async function getCurrentLocation(){
+        console.log("aaaaaaaaaaa");
         const { status } = await Location.requestForegroundPermissionsAsync();
 
         if (status === 'granted') {
-            let { coords } = await Location.getLastKnownPositionAsync({accuracy: Location.Accuracy.Balanced,});
-            
-            if(coords) {
-
-                const { latitude, longitude } = coords;
+            console.log("bbbbbbbb");
+            let location = await Location.getLastKnownPositionAsync({accuracy: Location.Accuracy.Balanced,});
+            console.log(location);
+            if(location) {
+                console.log("if coords");
+                const { latitude, longitude } = location.coords;
 
                 setOrigin({
                     latitude: latitude,
@@ -50,7 +52,7 @@ export function Localization({navigation, route}){
                     longitudeDelta: 0.00421,
     
                 });
-
+                console.log("cccccccccc");
                 setDestination({
                     latitude: latitud,
                     longitude: longitud,
@@ -63,7 +65,7 @@ export function Localization({navigation, route}){
                     latitude, 
                     longitude
                 });
-
+                console.log(response);
 
                 for (let item of response) {
                     let address = `${item.street}, ${item.district} - ${item.subregion}`;

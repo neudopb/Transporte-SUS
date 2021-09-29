@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Alert, FlatList, Animated } from 'react-native';
 import styles from '../../styles/StyleUsers';
 import { useAuth } from '../../contexts/Auth';
-import { ItemConfirm } from '../../components/ItemConfirm';
+import { ItemPend } from '../../components/ItemPend';
 import api from '../../services/Api';
 import moment from 'moment';
 
@@ -79,7 +79,7 @@ export function SolicConfirmadas({ navigation }){
                         outputRange: [1, 1, 1, 0.5]
                     })
 
-                    return <ItemConfirm navigation = {navigation} data={item.data} hora={item.hora} endereco={item.minha_localizacao} destino={item.destino} descricao={item.descricao} nome={item.usuario.first_name} scale={scale} />
+                    return <ItemPend scale={scale} dados={item} navigation = {navigation} />
                 }}
             />
         </View>

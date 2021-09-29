@@ -10,6 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#d8d8d8"
     },
+    "android":{
+      "permissions": ["ACCESS_BACKGROUND_LOCATION"]
+    },
     "assetBundlePatterns": [
       "**/*"
     ]
